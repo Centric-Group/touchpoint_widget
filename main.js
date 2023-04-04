@@ -47,8 +47,12 @@
         console.log("Hello World")
     }
 
-    document.addEventListener("readystatechange", () => {
-        document.readyState == "interactive" && setUp()
-    })
+    "interactive" == document.readyState || "complete" == document.readyState ? setUp() : document.addEventListener ? document.addEventListener("readystatechange", function () {
+        "interactive" == document.readyState && setUp()
+    }) : document.attachEvent && document.attachEvent("readystatechange",
+        function () {
+            "interactive" == document.readyState && setUp()
+        }
+    )
 
 })(window, document)
