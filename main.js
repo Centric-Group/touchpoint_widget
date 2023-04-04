@@ -1,12 +1,16 @@
 ((window, document) => {
     const setUp = () => {
-        const createDIv = (styles) => {
+        const createDiv = () => {
             const e = document.createElement('div');
-            for (let style in styles) {
-                div.style[style] = styles[style];
-            }
             return document.body.appendChild(e), e
         }
+        const addI = (e, i) => {
+            e.id = i;
+            return e
+        }
+
+        let buttonDiv = createDiv()
+        buttonDiv = addI(buttonDiv, "widget_container")
 
         let styles = document.head.appendChild(document.createElement("style"));
         styles.innerHTML = `#widget_container{
