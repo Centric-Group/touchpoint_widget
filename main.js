@@ -1,11 +1,11 @@
-((w, d) => {
+((window, document) => {
     const setUp = () => {
         const createDIv = (styles) => {
-            const e = d.createElement('div');
+            const e = document.createElement('div');
             for (let style in styles) {
                 div.style[style] = styles[style];
             }
-            return d.body.appendChild(e), e
+            return document.body.appendChild(e), e
         }
 
         let styles = document.head.appendChild(document.createElement("style"));
@@ -47,8 +47,8 @@
         console.log("Hello World")
     }
 
-    d.addEventListener("readystatechange", () => {
-        d.readyState == "interactive" && setUp()
+    document.addEventListener("readystatechange", () => {
+        document.readyState == "interactive" && setUp()
     })
 
 })(window, document)
