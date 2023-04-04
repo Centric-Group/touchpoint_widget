@@ -1,4 +1,4 @@
-((window, document) => {
+(() => {
     const setUp = () => {
         const createDiv = () => {
             const e = document.createElement('div');
@@ -141,4 +141,4 @@
         }
     )
 
-})(window, document)
+})()
