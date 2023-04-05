@@ -74,6 +74,7 @@
             }
         }
 
+        //set default values
         const init = () => {
             const e = getE()
             setPosition(e.position);
@@ -85,13 +86,18 @@
         }
         init()
 
+        //end default values
+
         widget.addEventListener("click", function () {
             const e = getE()
 
             widget.classList.toggle('active');
             widget_img.classList.toggle('onCall');
 
-            setLabel(!isOnCall ? "Try Again Later" : e.label);
+            //try again later, call ended, calling..., call declined, call accepted, call failed
+            //00:00:00
+
+            setLabel(!isOnCall ? "Calling..." : e.label);
             setImage(!isOnCall ? "./decline.png" : e.image)
             setBG(!isOnCall ? "#ac3d3d" : e.bg);
             setAnimation(!isOnCall ? 0 : e.anim);
@@ -99,7 +105,8 @@
         })
 
         let styles = document.head.appendChild(document.createElement("style"));
-        styles.innerHTML = `#widget_container{
+        styles.innerHTML = `
+        #widget_container{
             position: fixed;
             padding: 10px 20px;
             border-radius: 30px;
