@@ -20,7 +20,6 @@
         widget = addI(widget, "widget_container");
         widget_img = addI(widget_img, "widget_img");
         widget.appendChild(widget_img);
-        widget_label.innerHTML = "Contact Us";
         widget.appendChild(widget_label);
 
         const setPosition = ({ bottom, right }) => {
