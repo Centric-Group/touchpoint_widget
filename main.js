@@ -47,29 +47,30 @@
         }
 
         const getE = () => {
+            const defaultVal = {
+                position: { bottom: 30, right: 30 },
+                label: "Contact Us",
+                image: "./answer.png",
+                bg: "#3DAC47",
+                anim: 360,
+                corners: 30
+            }
             if (!window.blinkWidget) {
-                return {
-                    position: { bottom: 30, right: 30 },
-                    label: "Contact Us",
-                    image: "./answer.png",
-                    bg: "#3DAC47",
-                    anim: 360,
-                    corners: 30
-                }
+                //default styles
+                return defaultVal
             } else {
-                let position = { bottom: 30, right: 30 };
                 let tmp = window.blinkWidget.position;
                 if (tmp != null && tmp != undefined) {
-                    if (tmp.bottom != null && tmp.bottom != undefined) position.bottom = tmp.bottom;
-                    if (tmp.right != null && tmp.right != undefined) position.right = tmp.right;
+                    if (tmp.bottom != null && tmp.bottom != undefined) defaultVal.position.bottom = tmp.bottom;
+                    if (tmp.right != null && tmp.right != undefined) defaultVal.position.right = tmp.right;
                 }
                 return {
                     position: position,
-                    label: window.blinkWidget.label != undefined && window.blinkWidget.label != null ? window.blinkWidget.label : "Contact Us",
-                    image: window.blinkWidget.image != undefined && window.blinkWidget.image != null ? window.blinkWidget.image : "./answer.png",
-                    bg: window.blinkWidget.bg != undefined && window.blinkWidget.bg != null ? window.blinkWidget.bg : "#3DAC47",
-                    anim: window.blinkWidget.anim != undefined && window.blinkWidget.anim != null ? window.blinkWidget.anim : 360,
-                    corners: window.blinkWidget.corners != undefined && window.blinkWidget.corners != null ? window.blinkWidget.corners : 30
+                    label: window.blinkWidget.label != undefined && window.blinkWidget.label != null ? window.blinkWidget.label : defaultVal.label,
+                    image: window.blinkWidget.image != undefined && window.blinkWidget.image != null ? window.blinkWidget.image : defaultVal.image,
+                    bg: window.blinkWidget.bg != undefined && window.blinkWidget.bg != null ? window.blinkWidget.bg : defaultVal.bg,
+                    anim: window.blinkWidget.anim != undefined && window.blinkWidget.anim != null ? window.blinkWidget.anim : defaultVal.anim,
+                    corners: window.blinkWidget.corners != undefined && window.blinkWidget.corners != null ? window.blinkWidget.corners : defaultVal.corners,
                 }
             }
         }
@@ -136,7 +137,6 @@
         #widget_img.onCall{
             left: 75%;
         }`
-
     }
 
 
