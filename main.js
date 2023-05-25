@@ -85,9 +85,20 @@
             setCorners(e.corners)
         }
         init()
-
         //end default values
 
+        //#region adding vonage modules
+        const vonage = document.createElement("script");
+        vonage.type = "text/javascript";
+        vonage.src = "https://unpkg.com/nexmo-client@latest/dist/nexmoClient.js?module";
+        document.head.appendChild(vonage);
+
+        const startCall = () => {
+            console.log(window.blinkWidget.u)
+        }
+        //#endregion
+
+        //listeners
         widget.addEventListener("click", function () {
             const e = getE()
 
@@ -102,7 +113,11 @@
             setBG(!isOnCall ? "#ac3d3d" : e.bg);
             setAnimation(!isOnCall ? 0 : e.anim);
             isOnCall = !isOnCall;
+
+            startCall()
         })
+
+        //end listeners
 
         let styles = document.head.appendChild(document.createElement("style"));
         styles.innerHTML = `
@@ -137,7 +152,6 @@
             left: 75%;
         }`
     }
-
 
     "interactive" == document.readyState || "complete" == document.readyState ? setUp() : document.addEventListener ? document.addEventListener("readystatechange", function () {
         "interactive" == document.readyState && setUp()
