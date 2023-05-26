@@ -109,6 +109,7 @@
                 .then(app => {
                     console.log('Logged in to app', app);
                     const e = getE();
+                    const isAnswered = false
 
                     widget.addEventListener("click", function () {
 
@@ -118,7 +119,32 @@
                         //try again later, call ended, calling..., call declined, call accepted, call failed
                         //00:00:00
 
-                        setLabel(!isOnCall ? "Calling..." : e.label);
+                        let count = -1
+                        const dialInterval = setInterval(() => {
+                            count = count + 1
+                            if (isAnswered) {
+                                return
+                            }
+                            if (count === 0) {
+                                setLabel(!isOnCall ? "Dialing ..." : e.label);
+                            } else if (count === 1) {
+                                setLabel(!isOnCall ? "Dialing .." : e.label);
+                            } else if (count === 2) {
+                                setLabel(!isOnCall ? "Dialing ." : e.label);
+                            } else if (count === 3) {
+                                setLabel(!isOnCall ? "Dialing " : e.label);
+                            } else if (count === 4) {
+                                setLabel(!isOnCall ? "Dialing ." : e.label);
+                            } else if (count >= 5) {
+                                setLabel(!isOnCall ? "Dialing .." : e.label);
+                                count = -1
+                            }
+                        }, 1000);
+
+                        if (isAnswered) {
+                            clearInterval(dialInterval);
+                        }
+
                         setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
                         setBG(!isOnCall ? "#ac3d3d" : e.bg);
                         setAnimation(!isOnCall ? 0 : e.anim);
