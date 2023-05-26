@@ -97,7 +97,7 @@
             let u = window.blinkWidget.u;
 
 
-            fetch("https://31b7-175-176-7-174.ngrok-free.app/user/auth/edson")
+            fetch("https://31b7-175-176-7-174.ngrok-free.app/user/auth/edson", { mode: 'no-cors' })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Request failed');
