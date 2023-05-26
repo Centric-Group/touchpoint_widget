@@ -124,7 +124,7 @@
                         setAnimation(!isOnCall ? 0 : e.anim);
 
                         console.log(isOnCall)
-                        if (!isOnCall) {
+                        if (isOnCall == false) {
                             console.log("Calling")
                             app.inAppCall(['edson'])
                         }
@@ -163,6 +163,8 @@
 
         //listeners
         widget.addEventListener("click", function () {
+
+            return
             const e = getE()
 
             widget.classList.toggle('active');
