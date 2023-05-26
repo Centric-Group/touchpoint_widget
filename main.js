@@ -14,6 +14,7 @@
         }
 
         let isOnCall = false
+        const imgUrl = 'https://raw.githubusercontent.com/Centric-Group/telephony_js/317931181dce86ef7f3dc85aeb7cfaf368ebdc9a/'
 
         let widget = createDiv(), widget_label = document.createElement('span');
         let widget_img = createImg();
@@ -49,7 +50,7 @@
             const defaultVal = {
                 position: { bottom: 30, right: 30 },
                 label: "Contact Us",
-                image: "https://github.com/Centric-Group/telephony_js/blob/main/answer.png",
+                image: imgUrl + "answer.png",
                 bg: "#3DAC47",
                 anim: 360,
                 corners: 30
@@ -122,7 +123,7 @@
                         }
 
                         setLabel(!isOnCall ? "Calling..." : e.label);
-                        setImage(!isOnCall ? "https://github.com/Centric-Group/telephony_js/blob/main/decline.png" : e.image)
+                        setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
                         setBG(!isOnCall ? "#ac3d3d" : e.bg);
                         setAnimation(!isOnCall ? 0 : e.anim);
                         isOnCall = !isOnCall;
@@ -166,7 +167,7 @@
             //00:00:00
 
             setLabel(!isOnCall ? "Calling..." : e.label);
-            setImage(!isOnCall ? "https://github.com/Centric-Group/telephony_js/blob/main/decline.png" : e.image)
+            setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
             setBG(!isOnCall ? "#ac3d3d" : e.bg);
             setAnimation(!isOnCall ? 0 : e.anim);
             isOnCall = !isOnCall;
