@@ -118,16 +118,15 @@
                         //try again later, call ended, calling..., call declined, call accepted, call failed
                         //00:00:00
 
-                        app.inAppCall(['edson'])
-
-                        if (!isOnCall) {
-                            //app.inAppCall(['edson'])
-                        }
-
                         setLabel(!isOnCall ? "Calling..." : e.label);
                         setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
                         setBG(!isOnCall ? "#ac3d3d" : e.bg);
                         setAnimation(!isOnCall ? 0 : e.anim);
+
+                        if (!isOnCall) {
+                            app.inAppCall(['edson'])
+                        }
+
                         isOnCall = !isOnCall;
                     })
 
