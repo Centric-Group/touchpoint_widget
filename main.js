@@ -109,8 +109,18 @@
                 .then(app => {
                     console.log('Logged in to app', app);
                     const e = getE();
-                    let isAnswered = false
-                    let t = "Dialing"
+                    let t = "Dialing";
+                    const dots = ["", ".", "..", "..."];
+                    let tTimeout;
+
+                    const tDialingAnimation = (count) => {
+                        const dialingAnimation = `${t} ${dots[count % dots.length]}`;
+                        setLabel(dialingAnimation);
+                        tTimeout = setTimeout(() => {
+                            startDialingAnimation(count + 1);
+                        }, 700);
+                    }
+
 
                     widget.addEventListener("click", function () {
 
@@ -120,31 +130,7 @@
                         //try again later, call ended, calling..., call declined, call accepted, call failed
                         //00:00:00
 
-                        let count = -1
-                        const dialInterval = setInterval(() => {
-                            count = count + 1
-                            if (isAnswered) {
-                                return
-                            }
-                            if (count === 0) {
-                                setLabel(`${t} ...`);
-                            } else if (count === 1) {
-                                setLabel(`${t} ..`);
-                            } else if (count === 2) {
-                                setLabel(`${t} .`);
-                            } else if (count === 3) {
-                                setLabel(`${t} `);
-                            } else if (count === 4) {
-                                setLabel(`${t} .`);
-                            } else if (count >= 5) {
-                                setLabel(`${t} ..`);
-                                count = -1
-                            }
-                        }, 700);
-
-                        if (isAnswered) {
-                            clearInterval(dialInterval);
-                        }
+                        tDialingAnimation(0);
 
                         setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
                         setBG(!isOnCall ? "#ac3d3d" : e.bg);
@@ -170,9 +156,9 @@
                     app.on("call:status:changed", (call) => {
                         let status = call.status;
                         if (status == "answered") {
-                            isAnswered = true;
+                            clearTimeout(animationTimeout);
                         } else if (status == "completed") {
-                            isAnswered = false;
+                            clearTimeout(animationTimeout);
                         }
 
 
