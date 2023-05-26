@@ -93,28 +93,66 @@
         vonage.src = "https://unpkg.com/nexmo-client@latest/dist/nexmoClient.js?module";
         document.head.appendChild(vonage);
 
+        const initVonage = async () => {
+            const NexmoClient = window.NexmoClient;
+            const requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+
+            const responce = await fetch("https://tel-server.onrender.com/user/auth/rico", requestOptions)
+            const data = await responce.json();
+
+            new NexmoClient()
+                .createSession(data.jwt)
+                .then(app => {
+                    console.log('Logged in to app', app);
+
+                    widget.addEventListener("click", function () {
+                        const e = getE()
+
+                        widget.classList.toggle('active');
+                        widget_img.classList.toggle('onCall');
+
+                        //try again later, call ended, calling..., call declined, call accepted, call failed
+                        //00:00:00
+
+                        if (!isOnCall) {
+                            app.inAppCall(['edson'])
+                        }
+
+                        setLabel(!isOnCall ? "Calling..." : e.label);
+                        setImage(!isOnCall ? "./decline.png" : e.image)
+                        setBG(!isOnCall ? "#ac3d3d" : e.bg);
+                        setAnimation(!isOnCall ? 0 : e.anim);
+                        isOnCall = !isOnCall;
+                    })
+
+                    app.on("member:call", (member, call) => {
+                        // Hang-up the call
+                        widget.addEventListener("click", () => {
+                            call.hangUp();
+                        });
+                    });
+
+                    app.on("call:status:changed", (call) => {
+                        let status = call.status;
+                        setLabel(!isOnCall ? status : e.label);
+                    });
+                })
+                .catch(err => console.log(err));
+
+        }
+
         const startCall = () => {
             let u = window.blinkWidget.u;
 
 
-            fetch("https://31b7-175-176-7-174.ngrok-free.app/user/auth/edson", { mode: 'no-cors' })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Request failed');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Process the retrieved data
-                    console.log(data);
-                })
-                .catch(error => {
-                    // Handle any errors that occurred during the request
-                    console.error('Error:', error);
-                });
-
             console.log(u)
         }
+
+
+        initVonage();
         //#endregion
 
         //listeners
