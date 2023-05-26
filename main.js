@@ -116,28 +116,28 @@
                         //try again later, call ended, calling..., call declined, call accepted, call failed
                         //00:00:00
 
-                        setLabel(!isOnCall ? "Dialing ..." : e.label);
+                        setLabel(isOnCall == true ? "Dialing ..." : e.label);
 
-                        setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
-                        setBG(!isOnCall ? "#ac3d3d" : e.bg);
-                        setAnimation(!isOnCall ? 0 : e.anim);
+                        setImage(isOnCall == true ? imgUrl + "decline.png" : e.image)
+                        setBG(isOnCall == true ? "#ac3d3d" : e.bg);
+                        setAnimation(isOnCall == true ? 0 : e.anim);
                     }
 
                     widget.addEventListener("click", function () {
                         bhavior()
 
-                        if (!isOnCall) {
+                        if (isOnCall == false) {
                             console.log("Calling...");
                             app.inAppCall(['edson'])
                         }
-                        isOnCall = !isOnCall;
+                        isOnCall = true;
                     })
 
                     app.on("member:call", (member, call) => {
                         // Hang-up the call
                         widget.addEventListener("click", () => {
+                            isOnCall = false;
                             if (isOnCall) {
-                                isOnCall = false;
                                 bhavior()
                                 call.hangUp();
                             }
@@ -157,9 +157,9 @@
 
                         } else if (status == "completed") {
                             setLabel("Call Ended");
+                            isOnCall = false;
                             setTimeout(() => {
                                 setLabel(e.label);
-                                isOnCall = false;
                                 bhavior()
                             }, 1500)
                         }
