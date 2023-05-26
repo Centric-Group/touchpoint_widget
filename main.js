@@ -117,7 +117,7 @@
                         const dialingAnimation = `${t} ${dots[count % dots.length]}`;
                         setLabel(dialingAnimation);
                         tTimeout = setTimeout(() => {
-                            startDialingAnimation(count + 1);
+                            tDialingAnimation(count + 1);
                         }, 700);
                     }
 
