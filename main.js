@@ -118,17 +118,15 @@
                         //try again later, call ended, calling..., call declined, call accepted, call failed
                         //00:00:00
 
-                        setLabel(!isOnCall ? "Calling..." : e.label);
+                        //setLabel(!isOnCall ? "Calling..." : e.label);
                         setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
                         setBG(!isOnCall ? "#ac3d3d" : e.bg);
                         setAnimation(!isOnCall ? 0 : e.anim);
 
-                        console.log(isOnCall)
-                        if (isOnCall == false) {
-                            console.log("Calling")
+                        if (!isOnCall) {
+                            console.log("Calling...");
                             app.inAppCall(['edson'])
                         }
-
                         isOnCall = !isOnCall;
                     })
 
@@ -136,6 +134,7 @@
                         // Hang-up the call
                         widget.addEventListener("click", () => {
                             if (isOnCall) {
+                                console.log("Call end")
                                 call.hangUp();
                             }
                         });
@@ -160,27 +159,6 @@
 
         initVonage();
         //#endregion
-
-        //listeners
-        widget.addEventListener("click", function () {
-
-            return
-            const e = getE()
-
-            widget.classList.toggle('active');
-            widget_img.classList.toggle('onCall');
-
-            //try again later, call ended, calling..., call declined, call accepted, call failed
-            //00:00:00
-
-            setLabel(!isOnCall ? "Calling..." : e.label);
-            setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
-            setBG(!isOnCall ? "#ac3d3d" : e.bg);
-            setAnimation(!isOnCall ? 0 : e.anim);
-            isOnCall = !isOnCall;
-
-            startCall()
-        })
 
         //end listeners
 
