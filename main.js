@@ -110,6 +110,7 @@
                     console.log('Logged in to app', app);
                     const e = getE();
                     const isAnswered = false
+                    let t = "Dialing"
 
                     widget.addEventListener("click", function () {
 
@@ -126,20 +127,20 @@
                                 return
                             }
                             if (count === 0) {
-                                setLabel("Dialing ...");
+                                setLabel(`${t} ...`);
                             } else if (count === 1) {
-                                setLabel("Dialing ..");
+                                setLabel(`${t} ..`);
                             } else if (count === 2) {
-                                setLabel("Dialing .");
+                                setLabel(`${t} .`);
                             } else if (count === 3) {
-                                setLabel("Dialing ");
+                                setLabel(`${t} `);
                             } else if (count === 4) {
-                                setLabel("Dialing .");
+                                setLabel(`${t} .`);
                             } else if (count >= 5) {
-                                setLabel("Dialing ..");
+                                setLabel(`${t} ..`);
                                 count = -1
                             }
-                        }, 1000);
+                        }, 700);
 
                         if (isAnswered) {
                             clearInterval(dialInterval);
@@ -168,7 +169,15 @@
 
                     app.on("call:status:changed", (call) => {
                         let status = call.status;
-                        console.log(status)
+                        if (status == "answered") {
+                            isAnswered = !isAnswered;
+                        } else if (status == "completed") {
+                            isAnswered = false;
+                        } else if (status == "started") {
+                            t = "Ringing"
+                        }
+
+
                         setLabel(isOnCall ? status : e.label);
                     });
                 })
