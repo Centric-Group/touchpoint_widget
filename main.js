@@ -137,7 +137,7 @@
                         // Hang-up the call
                         widget.addEventListener("click", () => {
                             if (isOnCall) {
-                                console.log("Call end");
+                                isOnCall = false;
                                 bhavior()
                                 call.hangUp();
                             }
@@ -159,6 +159,7 @@
                             setLabel("Call Ended");
                             setTimeout(() => {
                                 setLabel(e.label);
+                                isOnCall = false;
                                 bhavior()
                             }, 1500)
                         }
