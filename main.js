@@ -142,6 +142,7 @@
 
                     app.on("call:status:changed", (call) => {
                         let status = call.status;
+                        console.log(status)
                         setLabel(isOnCall ? status : e.label);
                     });
                 })
