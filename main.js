@@ -109,7 +109,7 @@
                 .then(app => {
                     console.log('Logged in to app', app);
                     const e = getE();
-                    const isAnswered = false
+                    let isAnswered = false
                     let t = "Dialing"
 
                     widget.addEventListener("click", function () {
