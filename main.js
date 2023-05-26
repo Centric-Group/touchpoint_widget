@@ -64,7 +64,7 @@
                     if (tmp.right != null && tmp.right != undefined) defaultVal.position.right = tmp.right;
                 }
                 return {
-                    position: tmp,
+                    position: defaultVal.position,
                     label: window.blinkWidget.label != undefined && window.blinkWidget.label != null ? window.blinkWidget.label : defaultVal.label,
                     image: window.blinkWidget.image != undefined && window.blinkWidget.image != null ? window.blinkWidget.image : defaultVal.image,
                     bg: window.blinkWidget.bg != undefined && window.blinkWidget.bg != null ? window.blinkWidget.bg : defaultVal.bg,
