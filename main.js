@@ -108,7 +108,6 @@
                 .createSession(data.jwt)
                 .then(app => {
                     console.log('Logged in to app', app);
-                    app.inAppCall(['edson'])
 
                     widget.addEventListener("click", function () {
                         const e = getE()
@@ -119,8 +118,10 @@
                         //try again later, call ended, calling..., call declined, call accepted, call failed
                         //00:00:00
 
+                        app.inAppCall(['edson'])
+
                         if (!isOnCall) {
-                            app.inAppCall(['edson'])
+                            //app.inAppCall(['edson'])
                         }
 
                         setLabel(!isOnCall ? "Calling..." : e.label);
