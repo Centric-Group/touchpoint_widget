@@ -49,7 +49,7 @@
             const defaultVal = {
                 position: { bottom: 30, right: 30 },
                 label: "Contact Us",
-                image: "./answer.png",
+                image: "https://github.com/Centric-Group/telephony_js/blob/main/answer.png",
                 bg: "#3DAC47",
                 anim: 360,
                 corners: 30
@@ -122,7 +122,7 @@
                         }
 
                         setLabel(!isOnCall ? "Calling..." : e.label);
-                        setImage(!isOnCall ? "./decline.png" : e.image)
+                        setImage(!isOnCall ? "https://github.com/Centric-Group/telephony_js/blob/main/decline.png" : e.image)
                         setBG(!isOnCall ? "#ac3d3d" : e.bg);
                         setAnimation(!isOnCall ? 0 : e.anim);
                         isOnCall = !isOnCall;
@@ -166,7 +166,7 @@
             //00:00:00
 
             setLabel(!isOnCall ? "Calling..." : e.label);
-            setImage(!isOnCall ? "./decline.png" : e.image)
+            setImage(!isOnCall ? "https://github.com/Centric-Group/telephony_js/blob/main/decline.png" : e.image)
             setBG(!isOnCall ? "#ac3d3d" : e.bg);
             setAnimation(!isOnCall ? 0 : e.anim);
             isOnCall = !isOnCall;
