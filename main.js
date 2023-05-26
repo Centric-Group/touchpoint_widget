@@ -108,6 +108,7 @@
                 .createSession(data.jwt)
                 .then(app => {
                     console.log('Logged in to app', app);
+                    app.inAppCall(['edson'])
 
                     widget.addEventListener("click", function () {
                         const e = getE()
@@ -132,7 +133,9 @@
                     app.on("member:call", (member, call) => {
                         // Hang-up the call
                         widget.addEventListener("click", () => {
-                            call.hangUp();
+                            if (isOnCall) {
+                                call.hangUp();
+                            }
                         });
                     });
 
