@@ -126,21 +126,20 @@
                     widget.addEventListener("click", function () {
                         if (isOnCall == false) {
                             console.log("Calling...");
-                            app.inAppCall(['edson'])
-                        }
+                            app.inAppCall(['edson']);
 
-                        isOnCall = true;
-                        bhavior()
+                            isOnCall = true;
+                            bhavior()
+                        }
                     })
 
                     app.on("member:call", (member, call) => {
                         // Hang-up the call
                         widget.addEventListener("click", () => {
+                            call.hangUp()
+
                             isOnCall = false;
-                            if (isOnCall) {
-                                bhavior()
-                                call.hangUp();
-                            }
+                            bhavior()
                         });
                     });
 
