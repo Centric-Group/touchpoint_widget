@@ -120,7 +120,7 @@
 
                         setImage(isOnCall == true ? imgUrl + "decline.png" : e.image)
                         setBG(isOnCall == true ? "#ac3d3d" : e.bg);
-                        setAnimation(isOnCall == true ? 0 : e.anim);
+                        setAnimation(e.anim);
                     }
 
                     widget.addEventListener("click", function () {
@@ -154,7 +154,7 @@
                                 setLabel("On Call");
                             }, 1500);
 
-                        } else if (status == "completed") {
+                        } else if (status == "completed" || status == "rejected" || status == "unanswered") {
                             setLabel("Call Ended");
                             isOnCall = false;
                             setTimeout(() => {
