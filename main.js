@@ -147,20 +147,21 @@
                     app.on("call:status:changed", (call) => {
                         let status = call.status;
 
-                        console.log(status); //unaswered (ringing and reject)
+                        console.log(status); //unanswered (ringing and reject), failed (not sure), completed (call end)
 
                         if (status == "answered") {
-                            setLabel(isOnCall ? "Call Answer" : e.label);
+                            setLabel("Call Answer");
                             setTimeout(() => {
-                                setLabel(isOnCall ? "On Call" : e.label);
-                            }, 2000);
+                                setLabel("On Call");
+                            }, 1500);
 
                         } else if (status == "completed") {
-                            bhavior()
+                            setLabel("Call Ended");
+                            setTimeout(() => {
+                                setLabel(e.label);
+                                bhavior()
+                            }, 1500)
                         }
-
-
-                        setLabel(isOnCall ? status : e.label);
                     });
                 })
                 .catch(err => console.log(err));
