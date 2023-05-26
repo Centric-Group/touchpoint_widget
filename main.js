@@ -94,7 +94,26 @@
         document.head.appendChild(vonage);
 
         const startCall = () => {
-            console.log(window.blinkWidget.u)
+            let u = window.blinkWidget.u;
+
+
+            fetch("https://31b7-175-176-7-174.ngrok-free.app/user/auth/edson")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Request failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Process the retrieved data
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Handle any errors that occurred during the request
+                    console.error('Error:', error);
+                });
+
+            console.log(u)
         }
         //#endregion
 
