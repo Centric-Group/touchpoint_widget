@@ -170,11 +170,9 @@
                     app.on("call:status:changed", (call) => {
                         let status = call.status;
                         if (status == "answered") {
-                            isAnswered = !isAnswered;
+                            isAnswered = true;
                         } else if (status == "completed") {
                             isAnswered = false;
-                        } else if (status == "started") {
-                            t = "Ringing"
                         }
 
 
