@@ -109,32 +109,27 @@
                 .then(app => {
                     console.log('Logged in to app', app);
                     const e = getE();
-                    let t = "Dialing";
-                    const dots = ["", ".", "..", "..."];
-                    let tTimeout;
 
-                    const tDialingAnimation = (count) => {
-                        const dialingAnimation = `${t} ${dots[count % dots.length]}`;
-                        setLabel(dialingAnimation);
-                        tTimeout = setTimeout(() => {
-                            tDialingAnimation(count + 1);
-                        }, 700);
-                    }
-
-
-                    widget.addEventListener("click", function () {
-
+                    const bhavior = () => {
                         widget.classList.toggle('active');
                         widget_img.classList.toggle('onCall');
-
                         //try again later, call ended, calling..., call declined, call accepted, call failed
                         //00:00:00
 
-                        tDialingAnimation(0);
+                        setLabel(isOnCall ? "Dialing ..." : e.label);
 
                         setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
                         setBG(!isOnCall ? "#ac3d3d" : e.bg);
                         setAnimation(!isOnCall ? 0 : e.anim);
+                    }
+
+                    widget.addEventListener("click", function () {
+                        widget.classList.toggle('active');
+                        widget_img.classList.toggle('onCall');
+                        //try again later, call ended, calling..., call declined, call accepted, call failed
+                        //00:00:00
+
+                        bhavior()
 
                         if (!isOnCall) {
                             console.log("Calling...");
@@ -147,7 +142,8 @@
                         // Hang-up the call
                         widget.addEventListener("click", () => {
                             if (isOnCall) {
-                                console.log("Call end")
+                                console.log("Call end");
+                                bhavior()
                                 call.hangUp();
                             }
                         });
@@ -155,10 +151,17 @@
 
                     app.on("call:status:changed", (call) => {
                         let status = call.status;
+
+                        console.log(status);
+
                         if (status == "answered") {
-                            clearTimeout(tTimeout);
+                            setLabel(isOnCall ? "Call Answer" : e.label);
+                            setTimeout(() => {
+                                setLabel(isOnCall ? "On Call" : e.label);
+                            }, 2000);
+
                         } else if (status == "completed") {
-                            clearTimeout(tTimeout);
+                            bhavior()
                         }
 
 
