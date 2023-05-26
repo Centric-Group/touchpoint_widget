@@ -124,11 +124,6 @@
                     }
 
                     widget.addEventListener("click", function () {
-                        widget.classList.toggle('active');
-                        widget_img.classList.toggle('onCall');
-                        //try again later, call ended, calling..., call declined, call accepted, call failed
-                        //00:00:00
-
                         bhavior()
 
                         if (!isOnCall) {
@@ -152,7 +147,7 @@
                     app.on("call:status:changed", (call) => {
                         let status = call.status;
 
-                        console.log(status);
+                        console.log(status); //unaswered (ringing and reject)
 
                         if (status == "answered") {
                             setLabel(isOnCall ? "Call Answer" : e.label);
