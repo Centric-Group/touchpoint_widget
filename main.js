@@ -123,7 +123,9 @@
                         setBG(!isOnCall ? "#ac3d3d" : e.bg);
                         setAnimation(!isOnCall ? 0 : e.anim);
 
+                        console.log(isOnCall)
                         if (!isOnCall) {
+                            console.log("Calling")
                             app.inAppCall(['edson'])
                         }
 
