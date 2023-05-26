@@ -108,9 +108,9 @@
                 .createSession(data.jwt)
                 .then(app => {
                     console.log('Logged in to app', app);
+                    const e = getE();
 
                     widget.addEventListener("click", function () {
-                        const e = getE()
 
                         widget.classList.toggle('active');
                         widget_img.classList.toggle('onCall');
@@ -118,7 +118,7 @@
                         //try again later, call ended, calling..., call declined, call accepted, call failed
                         //00:00:00
 
-                        //setLabel(!isOnCall ? "Calling..." : e.label);
+                        setLabel(!isOnCall ? "Calling..." : e.label);
                         setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
                         setBG(!isOnCall ? "#ac3d3d" : e.bg);
                         setAnimation(!isOnCall ? 0 : e.anim);
@@ -142,7 +142,7 @@
 
                     app.on("call:status:changed", (call) => {
                         let status = call.status;
-                        setLabel(!isOnCall ? status : e.label);
+                        setLabel(isOnCall ? status : e.label);
                     });
                 })
                 .catch(err => console.log(err));
