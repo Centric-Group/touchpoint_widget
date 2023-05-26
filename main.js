@@ -124,13 +124,13 @@
                     }
 
                     widget.addEventListener("click", function () {
-                        bhavior()
-
                         if (isOnCall == false) {
                             console.log("Calling...");
                             app.inAppCall(['edson'])
                         }
+
                         isOnCall = true;
+                        bhavior()
                     })
 
                     app.on("member:call", (member, call) => {
