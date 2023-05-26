@@ -156,9 +156,9 @@
                     app.on("call:status:changed", (call) => {
                         let status = call.status;
                         if (status == "answered") {
-                            clearTimeout(animationTimeout);
+                            clearTimeout(tTimeout);
                         } else if (status == "completed") {
-                            clearTimeout(animationTimeout);
+                            clearTimeout(tTimeout);
                         }
 
 
