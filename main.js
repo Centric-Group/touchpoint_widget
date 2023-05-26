@@ -116,7 +116,7 @@
                         //try again later, call ended, calling..., call declined, call accepted, call failed
                         //00:00:00
 
-                        setLabel(isOnCall ? "Dialing ..." : e.label);
+                        setLabel(!isOnCall ? "Dialing ..." : e.label);
 
                         setImage(!isOnCall ? imgUrl + "decline.png" : e.image)
                         setBG(!isOnCall ? "#ac3d3d" : e.bg);
