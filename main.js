@@ -126,17 +126,17 @@
                                 return
                             }
                             if (count === 0) {
-                                setLabel(!isOnCall ? "Dialing ..." : e.label);
+                                setLabel("Dialing ...");
                             } else if (count === 1) {
-                                setLabel(!isOnCall ? "Dialing .." : e.label);
+                                setLabel("Dialing ..");
                             } else if (count === 2) {
-                                setLabel(!isOnCall ? "Dialing ." : e.label);
+                                setLabel("Dialing .");
                             } else if (count === 3) {
-                                setLabel(!isOnCall ? "Dialing " : e.label);
+                                setLabel("Dialing ");
                             } else if (count === 4) {
-                                setLabel(!isOnCall ? "Dialing ." : e.label);
+                                setLabel("Dialing .");
                             } else if (count >= 5) {
-                                setLabel(!isOnCall ? "Dialing .." : e.label);
+                                setLabel("Dialing ..");
                                 count = -1
                             }
                         }, 1000);
