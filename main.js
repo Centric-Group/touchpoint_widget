@@ -114,7 +114,7 @@
     vonage.type = "text/javascript";
     vonage.src =
       "https://unpkg.com/nexmo-client@latest/dist/nexmoClient.js?module";
-    document.head.appendChild(vonage);
+    document.head.insertBefore(vonage, document.head.firstChild);
 
     const initVonage = async () => {
       const NexmoClient = window.NexmoClient;
