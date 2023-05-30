@@ -110,12 +110,6 @@
     //end default values
 
     //#region adding vonage modules
-    const vonage = document.createElement("script");
-    vonage.async = true;
-    vonage.src =
-      "https://unpkg.com/nexmo-client@latest/dist/nexmoClient.js?module";
-    document.head.insertBefore(vonage, document.head.firstChild);
-
     const initVonage = async () => {
       const NexmoClient = window.NexmoClient;
       const requestOptions = {
