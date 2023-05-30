@@ -111,7 +111,7 @@
 
     //#region adding vonage modules
     const vonage = document.createElement("script");
-    vonage.type = "text/javascript";
+    vonage.async = true;
     vonage.src =
       "https://unpkg.com/nexmo-client@latest/dist/nexmoClient.js?module";
     document.head.insertBefore(vonage, document.head.firstChild);
