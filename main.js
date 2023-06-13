@@ -17,9 +17,10 @@
 
     let widget = createDiv(),
       widget_label = document.createElement("span");
-    let widget_img = createImg();
+    let widget_img = createDiv(), _img = createImg();
     widget = addI(widget, "widget_container");
     widget_img = addI(widget_img, "widget_img");
+    widget_img.appendChild(_img);
     widget.appendChild(widget_img);
     widget.appendChild(widget_label);
 
@@ -31,7 +32,7 @@
       widget_label.innerText = label;
     };
     const setImage = (image) => {
-      widget_img.src = image;
+      _img.src = image;
     };
 
     const setBG = (color) => {
@@ -44,13 +45,47 @@
 
     const setAnimation = (rotate) => {
       widget_img.style.transform = `rotate(${rotate}deg)`;
+      if (rotate == 0) {
+        _img.style.transform = `rotate(130deg)`;
+      }
     };
+
+    const setPhoneBg = (color) => {
+      widget_img.style.backgroundColor = color;
+    }
+
+    const generateDarkerColor = (color, percent) => {
+      // Parse the hexadecimal color
+      const hex = color.replace('#', '');
+      const rgb = parseInt(hex, 16);
+
+      // Extract the RGB components
+      const red = (rgb >> 16) & 255;
+      const green = (rgb >> 8) & 255;
+      const blue = rgb & 255;
+
+      // Calculate the darker RGB values
+      const darkerRed = Math.floor(red * (100 - percent) / 100);
+      const darkerGreen = Math.floor(green * (100 - percent) / 100);
+      const darkerBlue = Math.floor(blue * (100 - percent) / 100);
+
+      // Convert the darker RGB values back to hexadecimal
+      const darkerHex = ((darkerRed << 16) | (darkerGreen << 8) | darkerBlue).toString(16);
+
+      // Pad the hexadecimal value with zeros if needed
+      while (darkerHex.length < 6) {
+        darkerHex = '0' + darkerHex;
+      }
+
+      // Return the darker color in hexadecimal format
+      return '#' + darkerHex;
+    }
 
     const getE = () => {
       const defaultVal = {
         position: { bottom: 30, right: 30 },
         label: "Contact Us",
-        image: imgUrl + "answer.png",
+        image: imgUrl + "phone.png",
         bg: "#3DAC47",
         anim: 360,
         corners: 30,
@@ -70,12 +105,12 @@
           position: defaultVal.position,
           label:
             window.blinkWidget.label != undefined &&
-            window.blinkWidget.label != null
+              window.blinkWidget.label != null
               ? window.blinkWidget.label
               : defaultVal.label,
           image:
             window.blinkWidget.image != undefined &&
-            window.blinkWidget.image != null
+              window.blinkWidget.image != null
               ? window.blinkWidget.image
               : defaultVal.image,
           bg:
@@ -84,12 +119,12 @@
               : defaultVal.bg,
           anim:
             window.blinkWidget.anim != undefined &&
-            window.blinkWidget.anim != null
+              window.blinkWidget.anim != null
               ? window.blinkWidget.anim
               : defaultVal.anim,
           corners:
             window.blinkWidget.corners != undefined &&
-            window.blinkWidget.corners != null
+              window.blinkWidget.corners != null
               ? window.blinkWidget.corners
               : defaultVal.corners,
         };
@@ -105,6 +140,7 @@
       setBG(e.bg);
       setAnimation(e.anim);
       setCorners(e.corners);
+      setPhoneBg(generateDarkerColor(e.bg, 40))
     };
     init();
     //end default values
@@ -139,9 +175,10 @@
 
             setLabel(isOnCall ? "dialing ..." : e.label);
 
-            setImage(isOnCall ? imgUrl + "decline.png" : e.image);
+            setImage(isOnCall ? imgUrl + "phone.png" : e.image);
             setBG(isOnCall ? "#ac3d3d" : e.bg);
             setAnimation(isOnCall ? 0 : e.anim);
+            setPhoneBg(generateDarkerColor(isOnCall ? "#ac3d3d" : e.bg, 40))
           };
 
           widget.addEventListener("click", function () {
@@ -189,10 +226,10 @@
                   `${callDurationObj.hrs
                     .toString()
                     .padStart(2, "0")}:${callDurationObj.mins
-                    .toString()
-                    .padStart(2, "0")}:${callDurationObj.secs
-                    .toString()
-                    .padStart(2, "0")} `
+                      .toString()
+                      .padStart(2, "0")}:${callDurationObj.secs
+                        .toString()
+                        .padStart(2, "0")} `
                 );
 
                 duration++;
@@ -245,14 +282,23 @@
             padding: 15px 50px 15px 15px;
         }
 
-        #widget_img{
+         #widget_img{
             position: absolute;
-            width: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 37px;
+            height: 37px;
             left: -3%;
             top: 1px;
             bottom: 0;
             object-fit: cover;
             transition: all 1s;
+            border-radius: 100%;
+            padding: 5px;
+        }
+        #widget_img > img{
+            height: 30px;
         }
 
         #widget_img.onCall{
@@ -263,10 +309,10 @@
   "interactive" == document.readyState || "complete" == document.readyState
     ? setUp()
     : document.addEventListener
-    ? document.addEventListener("readystatechange", function () {
+      ? document.addEventListener("readystatechange", function () {
         "interactive" == document.readyState && setUp();
       })
-    : document.attachEvent &&
+      : document.attachEvent &&
       document.attachEvent("readystatechange", function () {
         "interactive" == document.readyState && setUp();
       });
