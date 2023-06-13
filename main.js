@@ -191,11 +191,16 @@
               isCompleted = !isCompleted;
             }
           });
+
+          let isAnswered = false;
           app.on("member:call", (member, call) => {
             setLabel("ringing ...");
             widget.addEventListener("click", () => {
-              console.log("Ending the call");
-              call.hangUp();
+              if (isAnswered) {
+                call.hangUp();
+              } else {
+                call.reject();
+              }
             });
           });
 
@@ -213,6 +218,7 @@
               };
 
             if (status == "answered") {
+              isAnswered = true;
               setLabel("call answer");
 
               callInterval = setInterval(() => {
@@ -239,6 +245,7 @@
               status == "rejected" ||
               status == "unanswered"
             ) {
+              isAnswered = false;
               setLabel(
                 status == "rejected" || status == "unanswered"
                   ? "please try again"
