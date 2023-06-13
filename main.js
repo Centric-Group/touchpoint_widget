@@ -221,12 +221,6 @@
         .catch((err) => console.log(err));
     };
 
-    const startCall = () => {
-      let u = window.blinkWidget.u;
-
-      console.log(u);
-    };
-
     initVonage();
     //#endregion
 
