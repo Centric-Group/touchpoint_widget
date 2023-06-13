@@ -13,7 +13,7 @@
       return e;
     };
     const imgUrl =
-      "https://raw.githubusercontent.com/Centric-Group/telephony_js/317931181dce86ef7f3dc85aeb7cfaf368ebdc9a/";
+      "https://raw.githubusercontent.com/Centric-Group/telephony_js/main/";
 
     let widget = createDiv(),
       widget_label = document.createElement("span");
