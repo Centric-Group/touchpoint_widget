@@ -70,7 +70,7 @@
       const darkerBlue = Math.floor(blue * (100 - percent) / 100);
 
       // Convert the darker RGB values back to hexadecimal
-      const darkerHex = ((darkerRed << 16) | (darkerGreen << 8) | darkerBlue).toString(16);
+      let darkerHex = ((darkerRed << 16) | (darkerGreen << 8) | darkerBlue).toString(16);
 
       // Pad the hexadecimal value with zeros if needed
       while (darkerHex.length < 6) {
