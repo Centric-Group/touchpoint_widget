@@ -184,7 +184,7 @@
           widget.addEventListener("click", function () {
             if (isOnCall) {
               console.log("Calling...");
-              app.inAppCall(["edson"]);
+              app.callServer("edson", "app");
 
               bhavior();
               isOnCall = !isOnCall;
