@@ -243,7 +243,8 @@
             } else if (
               status == "completed" ||
               status == "rejected" ||
-              status == "unanswered"
+              status == "unanswered" || 
+              status == "failed"
             ) {
               isAnswered = false;
               setLabel(
