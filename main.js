@@ -154,7 +154,7 @@
       };
 
       const responce = await fetch(
-        "https://tel-server.onrender.com/user/auth/rico",
+        `https://tel-server.onrender.com/user/auth/${window.blinkWidget.users[0]}`,
         requestOptions
       );
       const data = await responce.json();
@@ -184,7 +184,7 @@
           widget.addEventListener("click", function () {
             if (isOnCall) {
               console.log("Calling...");
-              app.callServer("edson", "app");
+              app.callServer(window.blinkWidget.users[1], "app");
 
               bhavior();
               isOnCall = !isOnCall;
@@ -243,7 +243,7 @@
             } else if (
               status == "completed" ||
               status == "rejected" ||
-              status == "unanswered" || 
+              status == "unanswered" ||
               status == "failed"
             ) {
               isAnswered = false;
