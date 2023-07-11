@@ -154,7 +154,7 @@
       };
 
       const responce = await fetch(
-        `https://z5ttkkas5m4d2ihx56sj4z3o6a0iqyhk.lambda-url.ap-southeast-2.on.aws/user/auth/${window.blinkWidget.users[0]}`,
+        `https://ukigenxp3xrrnjurt3rf7k4uwy0osquq.lambda-url.ap-southeast-1.on.aws/user/auth/${window.blinkWidget.users[0]}`,
         requestOptions
       );
       const data = await responce.json();
