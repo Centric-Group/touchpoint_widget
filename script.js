@@ -57,9 +57,9 @@
                         <rect x="45.3848" y="-6.10352e-05" width="7.92308" height="70" rx="3.96154" fill="#FFFBFB" fill-opacity="0.3"/>
                     </svg>
                     <div class="group">
-                        <img src="./image 79.png" id="group-center">
-                        <img src="./image 79.png">
-                        <img src="./image 79.png">
+                        <img src="./profile.png" id="group-center">
+                        <img src="./profile.png">
+                        <img src="./profile.png">
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="85" height="70" viewBox="0 0 85 70" fill="none">
                         <rect x="-2.15381" y="10.1448" width="7.92308" height="49.2029" rx="3.96154" fill="#FFFBFB" fill-opacity="0.3"/>
