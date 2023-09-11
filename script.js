@@ -264,7 +264,7 @@
             };
 
             const responce = await fetch(
-                `https://touchpoint-blink.onrender.com/user/auth?user=${window.blinkWidget.users[0]}`,
+                `https://touchpoint-blink.onrender.com/users/auth?user=${window.blinkWidget.users[0]}`,
                 requestOptions
             );
             const data = await responce.json();
